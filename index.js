@@ -7,7 +7,9 @@ const db=require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy'); 
-const MongoStore=require('connect-mongo')(session);
+const { Mongoose } = require('mongoose');
+const MongoStore = require('connect-mongo').default;
+const expressEjsLayouts = require('express-ejs-layouts');
 
 
 app.use(express.urlencoded({extended:true}));
@@ -15,6 +17,11 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 
 app.use(express.static('./assets'));
+
+ app.use(expressEjsLayouts);
+// // extract style and scripts from sub pages into the layout
+ app.set('layout extractStyles', true);
+ app.set('layout extractScripts', true);
 
 
 //setup the view engine
@@ -31,10 +38,12 @@ app.use(express.static('./assets'));
      cookie:{
          maxAge:(1000*60*100)
      },
-     store: new MongoStore({
-             mongooseConnection : db,
-             autoRemove:'disabled'
-     },function(err){
+    store: MongoStore.create({
+        mongoUrl: 'mongodb://localhost/major_db', 
+        mongooseConnection : db,
+        autoRemove:'disabled'
+},
+     function(err){
          console.log(err || 'connect-mongodb setup ok');
      })
  }));
