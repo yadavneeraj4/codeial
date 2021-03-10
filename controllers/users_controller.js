@@ -1,13 +1,28 @@
+const { Cookie } = require("express-session");
 const { userInfo } = require("os");
-const User=require('../models/user')
+const User=require('../models/user');
+
+module.exports.profile=function(req,res){
+return res.render('profile',{
+    title:"Users-profile"})
+}
+
 //render the signup page
 module.exports.signup= function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+
     return res.render('signup',{
         title:"Users-signup"
     })
 }
 //render the signin page
 module.exports.signin=function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+
     return res.render('signin',{
         title:"Users-signin"
     });
@@ -31,5 +46,5 @@ module.exports.create=(req,res)=>{
 }
 //signin and create a session for user
 module.exports.createSession=function(req,res){
-    
+    return res.redirect('/');
 }
