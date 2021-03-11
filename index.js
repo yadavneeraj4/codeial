@@ -3,15 +3,22 @@ const { resourceLimits } = require('worker_threads');
 const cookieParser=require('cookie-parser');
 const app=express();
 const port=8000;
+const expressEjsLayouts = require('express-ejs-layouts');
 const db=require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy'); 
 const { Mongoose } = require('mongoose');
 const MongoStore = require('connect-mongo').default;
-const expressEjsLayouts = require('express-ejs-layouts');
+const sassMiddleware = require('node-sass-middleware');
 
-
+app.use(sassMiddleware({
+    src: './assets/scss',
+    dest: './assets/css',
+    debug: true,
+    outputStyle: 'extended',
+    prefix: '/css'
+}))
 app.use(express.urlencoded({extended:true}));
 
 app.use(cookieParser());
