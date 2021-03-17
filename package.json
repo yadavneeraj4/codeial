@@ -1,7 +1,7 @@
 {
   "name": "codeial",
   "version": "1.0.0",
-  "description": "My all social media web application",
+  "description": "my all social media web application",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
@@ -10,18 +10,21 @@
   "keywords": [
     "social"
   ],
-  "author": "CodingNinjas",
+  "author": "Neeraj Yadav",
   "license": "ISC",
   "dependencies": {
-    "connect-mongo": "^2.0.3",
-    "cookie-parser": "^1.4.4",
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "autoloader": "^2.1.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^4.3.1",
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
-    "express-session": "^1.15.6",
-    "mongoose": "^5.4.6",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.11.19",
     "node-sass-middleware": "^0.11.0",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "typegoose": "^5.9.1"
   }
 }
